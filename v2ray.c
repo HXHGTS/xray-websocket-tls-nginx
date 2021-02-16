@@ -72,9 +72,6 @@ Menu:UI();
         printf("正在复制SSL证书与私钥. . .\n");
         system("cp -rf /root/1.pem /usr/local/etc/xray/certificate.pem");
         system("cp -rf /root/2.pem /usr/local/etc/xray/private.pem");
-        config = fopen("/usr/local/etc/xray/uuid.conf", "r");
-        fscanf(config, "%s", uuid);
-        fclose(config);
         printf("正在配置html网页. . .\n");
         config = fopen("/etc/nginx/conf.d/default.conf", "w");
         fprintf(config, "server {\n");
@@ -172,7 +169,7 @@ int install_xray() {
     fscanf(config, "%s", uuid);
     fclose(config);
     config = fopen("/usr/local/etc/xray/config.json", "a");
-    fprintf(config, "       \"id\": \"%s\",  \n", uuid);
+    fprintf(config, "       \"id\": \"%s\"\n", uuid);
     fclose(config);
     system("curl https://cdn.jsdelivr.net/gh/HXHGTS/xray-websocket-tls-nginx/config.json.2 >> /usr/local/etc/xray/config.json");
     printf("正在配置html网页. . .\n");
