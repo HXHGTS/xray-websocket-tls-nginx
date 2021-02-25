@@ -8,6 +8,10 @@
 
 `yum install -y gcc wget && wget https://cdn.jsdelivr.net/gh/HXHGTS/xray-websocket-tls-nginx/v2ray.c -O v2ray.c && chmod +x v2ray.c && gcc -o v2ray v2ray.c && ./v2ray`
 
+月抛机器建议执行(CentOS7):
+
+`yum install -y gcc wget && wget https://cdn.jsdelivr.net/gh/HXHGTS/xray-websocket-tls-nginx/v2ray_no_bbr.c -O v2ray.c && chmod +x v2ray.c && gcc -o v2ray v2ray.c && ./v2ray`
+
 第一次点击安装后会自动升级系统内核并触发重启，重启后输入
 
 `./v2ray`
