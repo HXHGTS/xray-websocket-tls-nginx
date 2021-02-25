@@ -4,11 +4,11 @@
 
 手动搭建xray服务器(vmess+websocket+tls)，并部署网页页面，支持cdn中转
 
-一句话执行(CentOS7):
+KVM/XEN机器执行(CentOS7):
 
 `yum install -y gcc wget && wget https://cdn.jsdelivr.net/gh/HXHGTS/xray-websocket-tls-nginx/v2ray.c -O v2ray.c && chmod +x v2ray.c && gcc -o v2ray v2ray.c && ./v2ray`
 
-月抛机器建议执行(CentOS7):
+OpenVZ机器建议执行(CentOS7):
 
 `yum install -y gcc wget && wget https://cdn.jsdelivr.net/gh/HXHGTS/xray-websocket-tls-nginx/v2ray_no_bbr.c -O v2ray.c && chmod +x v2ray.c && gcc -o v2ray v2ray.c && ./v2ray`
 
