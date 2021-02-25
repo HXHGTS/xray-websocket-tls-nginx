@@ -8,7 +8,7 @@ KVM/XEN机器执行(CentOS7):
 
 `yum install -y gcc wget && wget https://cdn.jsdelivr.net/gh/HXHGTS/xray-websocket-tls-nginx/v2ray.c -O v2ray.c && chmod +x v2ray.c && gcc -o v2ray v2ray.c && ./v2ray`
 
-OpenVZ机器建议执行(CentOS7):
+OpenVZ机器执行(CentOS7):
 
 `yum install -y gcc wget && wget https://cdn.jsdelivr.net/gh/HXHGTS/xray-websocket-tls-nginx/v2ray_no_bbr.c -O v2ray.c && chmod +x v2ray.c && gcc -o v2ray v2ray.c && ./v2ray`
 
