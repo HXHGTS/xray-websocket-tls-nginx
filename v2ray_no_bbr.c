@@ -240,7 +240,6 @@ int KernelUpdate() {
     printf("检测到证书与私钥文件未按照规定方式放置于根目录，强制退出！\n");
     exit(0);
     }
-    else{
     printf("请输入已绑定此服务器ip的域名:");
     scanf("%s", sni);
     config = fopen("/usr/local/etc/sni.conf", "w");
