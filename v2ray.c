@@ -151,7 +151,7 @@ int install_xray() {
     fscanf(config, "%s", sni);
     fclose(config);
     system("setenforce 0");
-    system("yum install -y curl unzip uuidgen epel-release nginx bind-utils ntpdate qrencode");
+    system("yum install -y unzip uuidgen epel-release nginx bind-utils ntpdate qrencode");
     printf("正在同步时间. . .\n");
     system("ntpdate -u time.nist.gov");
     printf("正在运行xray安装脚本. . .\n");
@@ -256,9 +256,7 @@ int KernelUpdate() {
         system("bash KernelUpdate.sh");
     }
     else {
-        system("wget https://cdn.jsdelivr.net/gh/HXHGTS/TCPOptimization/TCPO.sh -O TCPO.sh");
-        system("chmod +x TCPO.sh");
-        system("bash TCPO.sh");
+        system("curl -sSL https://cdn.jsdelivr.net/gh/HXHGTS/TCPOptimization/TCPO.sh | sh");
     }
     return 0;
 }
