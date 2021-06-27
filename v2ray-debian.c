@@ -27,9 +27,6 @@ Menu:UI();
         goto Menu;
     }
     else if (mode == 3) {
-        printf("xray二维码:\n\n");
-        system("qrencode -t ansiutf8 < /usr/local/etc/xray/vmess.txt");
-        printf("\n\n");
         printf("Vmess链接:\n\n");
         system("bash /usr/local/etc/xray/code_gen.sh");
         printf("\n");
@@ -84,7 +81,6 @@ Menu:UI();
         fclose(config);
         system("curl https://cdn.jsdelivr.net/gh/HXHGTS/xray-websocket-tls-nginx/default.conf >> /etc/nginx/conf.d/default.conf");
         system("systemctl restart nginx");
-        QRCodeGen();
         printf("正在检测xray与nginx运行状态，以下输出不为空则运行正常！\n");
         printf("--------------以下输出不为空则xray运行正常------------------\n");
         system("ss -lp | grep xray");
@@ -92,9 +88,6 @@ Menu:UI();
         system("ss -lp | grep nginx");
         printf("--------------------------------------------------------\n");
         printf("xray部署完成！\n");
-        printf("xray二维码:\n\n");
-        system("qrencode -t ansiutf8 < /usr/local/etc/xray/vmess.txt");
-        printf("\n\n");
         printf("Vmess链接:\n\n");
         system("bash /usr/local/etc/xray/code_gen.sh");
         goto Menu;
@@ -151,7 +144,7 @@ int install_xray() {
     fscanf(config, "%s", sni);
     fclose(config);
     system("setenforce 0");
-    system("apt-get install -y unzip nginx dnsutils ntpdate qrencode");
+    system("apt-get install -y unzip nginx dnsutils ntpdate");
     printf("正在同步时间. . .\n");
     system("ntpdate -u time.nist.gov");
     printf("正在运行xray安装脚本. . .\n");
@@ -183,9 +176,6 @@ int install_xray() {
     fprintf(config, "    server_name %s;\n",sni);
     fclose(config);
     system("curl https://cdn.jsdelivr.net/gh/HXHGTS/xray-websocket-tls-nginx/default.conf >> /etc/nginx/conf.d/default.conf");
-    system("wget https://cdn.jsdelivr.net/gh/HXHGTS/xray-websocket-tls-nginx/html.zip -O /usr/share/nginx/html/html.zip");
-    system("unzip -o /usr/share/nginx/html/html.zip -d /usr/share/nginx/html");
-    system("rm -f /usr/share/nginx/html/html.zip");
     printf("正在启动xray并将xray写入开机引导项. . .\n");
     system("systemctl enable xray");
     system("systemctl start xray");
@@ -197,7 +187,6 @@ int install_xray() {
     system("systemctl daemon-reload");
     system("systemctl restart nginx.service");
     system("setsebool -P httpd_can_network_connect 1");
-    QRCodeGen();
     printf("正在检测xray与nginx运行状态，以下输出不为空则运行正常！\n");
     printf("--------------以下输出不为空则xray运行正常------------------\n");
     system("ss -lp | grep xray");
@@ -205,36 +194,8 @@ int install_xray() {
     system("ss -lp | grep nginx");
     printf("--------------------------------------------------------\n");
     printf("xray部署完成！\n");
-    printf("xray二维码:\n\n");
-    system("qrencode -t ansiutf8 < /usr/local/etc/xray/vmess.txt");
-    printf("\n\n");
     printf("Vmess链接:\n\n");
     system("bash /usr/local/etc/xray/code_gen.sh");
-    return 0;
-}
-
-int QRCodeGen() {
-    config = fopen("/usr/local/etc/xray/code_gen.sh", "w");
-    fprintf(config, "#!/bin/bash\n");
-    fprintf(config, "VMESSCODE=$(base64 -w 0 << EOF\n");
-    fprintf(config, "    {\n");
-    fprintf(config, "      \"v\": \"2\",\n");
-    fprintf(config, "      \"ps\": \"v2ray\",\n");
-    fprintf(config, "      \"add\": \"%s\",\n",sni);//Addr
-    fprintf(config, "      \"port\": \"443\",\n");
-    fprintf(config, "      \"id\": \"%s\",\n",uuid);//UUID
-    fprintf(config, "      \"aid\": \"0\",\n");
-    fprintf(config, "      \"net\": \"ws\",\n");
-    fprintf(config, "      \"type\": \"none\",\n");
-    fprintf(config, "      \"host\": \"%s\",\n",sni);
-    fprintf(config, "      \"path\": \"/iso\",\n");
-    fprintf(config, "      \"tls\": \"tls\"\n");
-    fprintf(config, "    }\n");
-    fprintf(config, "EOF\n");
-    fprintf(config, "    )\n");
-    fprintf(config, "echo vmess://${VMESSCODE}\n");
-    fclose(config);
-    system("bash /usr/local/etc/xray/code_gen.sh > /usr/local/etc/xray/vmess.txt");
     return 0;
 }
 
