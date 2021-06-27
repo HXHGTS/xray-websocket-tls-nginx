@@ -190,13 +190,13 @@ int install_xray() {
     system("systemctl enable xray");
     system("systemctl start xray");
     printf("正在启动nginx并将nginx写入开机引导项. . .\n");
-    system("systemctl enable nginx");
-    system("systemctl start nginx");
     system("echo [Service]> /etc/systemd/system/nginx.service.d/override.conf");
     system("echo ExecStartPost=/bin/sleep 0.1>> /etc/systemd/system/nginx.service.d/override.conf");
+    system("systemctl enable nginx");
+    system("systemctl start nginx");
+    system("setsebool -P httpd_can_network_connect 1");
     system("systemctl daemon-reload");
     system("systemctl restart nginx.service");
-    system("setsebool -P httpd_can_network_connect 1");
     QRCodeGen();
     printf("正在检测xray与nginx运行状态，以下输出不为空则运行正常！\n");
     printf("--------------以下输出不为空则xray运行正常------------------\n");
