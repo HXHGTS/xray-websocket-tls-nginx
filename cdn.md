@@ -34,4 +34,4 @@ fetch(request)
 ```
   - {name: xxxxxxxxxx, server: 1.0.0.1, port: 443, type: vmess, uuid: xxxxxxxxx-xxxx-xxxx-xxxxxx, alterId: 4, cipher: auto, tls: true, network: ws, ws-path: /xxxxx, ws-headers: {Host: xxx.xxxxxx.workers.dev}}
 ```
-1.0.0.1请下载[Cloudflare ip优选工具](https://hxhgts.ml/CloudFlareIP/)，根据实际带宽优选CDN加速ip，最后用优选的ip进行替换，host填Worker的网址，不是服务器网址！！！
+1.0.0.1请下载[Cloudflare ip优选工具](https://github.com/XIU2/CloudflareSpeedTest)，根据实际带宽优选CDN加速ip，最后用优选的ip进行替换，host填Worker的网址，不是服务器网址！！！
