@@ -151,7 +151,7 @@ int install_xray() {
     fscanf(config, "%s", sni);
     fclose(config);
     system("setenforce 0");
-    system("apt-get install -y unzip uuidgen epel-release nginx bind-utils ntpdate qrencode");
+    system("apt-get install -y unzip nginx dnsutils ntpdate qrencode");
     printf("正在同步时间. . .\n");
     system("ntpdate -u time.nist.gov");
     printf("正在运行xray安装脚本. . .\n");
@@ -190,10 +190,10 @@ int install_xray() {
     system("systemctl enable xray");
     system("systemctl start xray");
     printf("正在启动nginx并将nginx写入开机引导项. . .\n");
-    system("systemctl enable nginx");
-    system("systemctl start nginx");
     system("echo [Service]> /etc/systemd/system/nginx.service.d/override.conf");
     system("echo ExecStartPost=/bin/sleep 0.1>> /etc/systemd/system/nginx.service.d/override.conf");
+    system("systemctl enable nginx");
+    system("systemctl start nginx");
     system("systemctl daemon-reload");
     system("systemctl restart nginx.service");
     system("setsebool -P httpd_can_network_connect 1");
