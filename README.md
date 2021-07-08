@@ -6,15 +6,15 @@
 
 KVM/XEN机器执行(CentOS7):
 
-`yum install -y gcc wget && wget https://cdn.jsdelivr.net/gh/HXHGTS/xray-websocket-tls-nginx/v2ray.c -O v2ray.c && chmod +x v2ray.c && gcc -o v2ray v2ray.c && ./v2ray`
+`yum install -y gcc wget && wget https://raw.githubusercontent.com/HXHGTS/xray-websocket-tls-nginx/main/v2ray.c -O v2ray.c && chmod +x v2ray.c && gcc -o v2ray v2ray.c && ./v2ray`
 
 OpenVZ机器执行(CentOS7):
 
-`yum install -y gcc wget && wget https://cdn.jsdelivr.net/gh/HXHGTS/xray-websocket-tls-nginx/v2ray_no_bbr.c -O v2ray.c && chmod +x v2ray.c && gcc -o v2ray v2ray.c && ./v2ray`
+`yum install -y gcc wget && wget https://raw.githubusercontent.com/HXHGTS/xray-websocket-tls-nginx/main/v2ray_no_bbr.c -O v2ray.c && chmod +x v2ray.c && gcc -o v2ray v2ray.c && ./v2ray`
 
 KVM/XEN机器执行(Debian8):
 
-`apt-get install -y gcc wget && wget https://cdn.jsdelivr.net/gh/HXHGTS/xray-websocket-tls-nginx/v2ray-debian.c -O v2ray.c && chmod +x v2ray.c && gcc -o v2ray v2ray.c && ./v2ray`
+`apt-get install -y gcc wget && wget https://raw.githubusercontent.com/HXHGTS/xray-websocket-tls-nginx/main/v2ray-debian.c -O v2ray.c && chmod +x v2ray.c && gcc -o v2ray v2ray.c && ./v2ray`
 
 第一次点击安装后会自动升级系统内核并触发重启，重启后输入
 
