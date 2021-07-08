@@ -182,6 +182,7 @@ int install_xray() {
     printf("正在启动nginx并将nginx写入开机引导项. . .\n");
     system("echo [Service]> /etc/systemd/system/nginx.service.d/override.conf");
     system("echo ExecStartPost=/bin/sleep 0.1>> /etc/systemd/system/nginx.service.d/override.conf");
+    system("semanage port -a -t http_port_t  -p tcp 2053");
     system("systemctl enable nginx");
     system("systemctl start nginx");
     system("setsebool -P httpd_can_network_connect 1");
