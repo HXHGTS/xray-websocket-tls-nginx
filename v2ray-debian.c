@@ -171,8 +171,6 @@ int install_xray() {
     printf("正在配置html网页. . .\n");
     config = fopen("/etc/nginx/conf.d/default.conf", "w");
     fprintf(config, "server {\n");
-    fclose(config);
-    config = fopen("/etc/nginx/conf.d/default.conf", "a");
     fprintf(config, "    server_name %s;\n",sni);
     fclose(config);
     system("curl https://cdn.jsdelivr.net/gh/HXHGTS/xray-websocket-tls-nginx/default.conf >> /etc/nginx/conf.d/default.conf");
