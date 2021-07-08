@@ -183,9 +183,6 @@ int install_xray() {
     fprintf(config, "    server_name %s;\n",sni);
     fclose(config);
     system("curl https://cdn.jsdelivr.net/gh/HXHGTS/xray-websocket-tls-nginx/default.conf >> /etc/nginx/conf.d/default.conf");
-    system("wget https://cdn.jsdelivr.net/gh/HXHGTS/xray-websocket-tls-nginx/html.zip -O /usr/share/nginx/html/html.zip");
-    system("unzip -o /usr/share/nginx/html/html.zip -d /usr/share/nginx/html");
-    system("rm -f /usr/share/nginx/html/html.zip");
     printf("正在启动xray并将xray写入开机引导项. . .\n");
     system("systemctl enable xray");
     system("systemctl start xray");
