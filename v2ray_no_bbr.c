@@ -146,9 +146,7 @@ int install_xray() {
     fscanf(config, "%s", sni);
     fclose(config);
     system("setenforce 0");
-    system("yum install -y curl unzip uuidgen epel-release nginx bind-utils ntpdate qrencode");
-    printf("正在同步时间. . .\n");
-    system("ntpdate -u time.windows.com");
+    system("yum install -y curl uuidgen epel-release nginx bind-utils qrencode");
     printf("正在运行xray安装脚本. . .\n");
     system("wget https://cdn.jsdelivr.net/gh/XTLS/Xray-install/install-release.sh -O install-release.sh");
     system("chmod +x install-release.sh");
