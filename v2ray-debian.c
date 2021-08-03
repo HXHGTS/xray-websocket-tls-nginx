@@ -142,7 +142,7 @@ int install_xray() {
     fscanf(config, "%s", sni);
     fclose(config);
     system("setenforce 0");
-    system("apt-get install -y unzip nginx dnsutils ntpdate");
+    system("apt-get install -y nginx dnsutils ntpdate");
     printf("正在同步时间. . .\n");
     system("ntpdate -u time.nist.gov");
     printf("正在运行xray安装脚本. . .\n");
