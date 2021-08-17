@@ -32,7 +32,9 @@ Menu:UI();
         printf("\n\n");
         printf("Vmess链接:\n\n");
         system("bash /usr/local/etc/xray/code_gen.sh");
-        printf("\n");
+        printf("\n--------------------------------------------------------\n");
+        printf("server: %s\nport: 2053\nUUID: %s\npath: /iso\n",sni,uuid);
+        printf("--------------------------------------------------------\n");
         goto Menu;
     }
     else if (mode == 4) {
@@ -95,6 +97,9 @@ Menu:UI();
         printf("\n\n");
         printf("Vmess链接:\n\n");
         system("bash /usr/local/etc/xray/code_gen.sh");
+        printf("\n--------------------------------------------------------\n");
+        printf("server: %s\nport: 2053\nUUID: %s\npath: /iso\n",sni,uuid);
+        printf("--------------------------------------------------------\n");
         goto Menu;
     }
     else if (mode == 7) {
@@ -102,8 +107,7 @@ Menu:UI();
         system("systemctl stop xray");
         system("systemctl stop nginx");
         system("wget https://cdn.jsdelivr.net/gh/XTLS/Xray-install/install-release.sh -O install-release.sh");
-        system("chmod +x install-release.sh");
-        system("bash install-release.sh");
+        system("chmod +x install-release.sh && bash install-release.sh");
         system("systemctl start xray");
         system("systemctl start nginx");
         system("rm -rf install-release.sh");
@@ -152,9 +156,7 @@ int install_xray() {
     system("yum install -y uuidgen epel-release nginx bind-utils qrencode");
     printf("正在运行xray安装脚本. . .\n");
     system("wget https://cdn.jsdelivr.net/gh/XTLS/Xray-install/install-release.sh -O install-release.sh");
-    system("chmod +x install-release.sh");
-    system("bash install-release.sh");
-    system("sleep 3");
+    system("chmod +x install-release.sh && bash install-release.sh");
     system("rm -rf install-release.sh");
     system("rm -rf TCPO.sh");
     printf("正在复制SSL证书与私钥. . .\n");
@@ -202,6 +204,9 @@ int install_xray() {
     printf("\n\n");
     printf("Vmess链接:\n\n");
     system("bash /usr/local/etc/xray/code_gen.sh");
+    printf("\n--------------------------------------------------------\n");
+    printf("server: %s\nport: 2053\nUUID: %s\npath: /iso\n",sni,uuid);
+    printf("--------------------------------------------------------\n");
     return 0;
 }
 
@@ -213,7 +218,7 @@ int QRCodeGen() {
     fprintf(config, "      \"v\": \"2\",\n");
     fprintf(config, "      \"ps\": \"v2ray\",\n");
     fprintf(config, "      \"add\": \"%s\",\n",sni);//Addr
-    fprintf(config, "      \"port\": \"443\",\n");
+    fprintf(config, "      \"port\": \"2053\",\n");
     fprintf(config, "      \"id\": \"%s\",\n",uuid);//UUID
     fprintf(config, "      \"aid\": \"0\",\n");
     fprintf(config, "      \"net\": \"ws\",\n");
