@@ -30,11 +30,7 @@ fetch(request)
 
 4.修改一个好记的名称，比如***.***.workers.dev,填入v2ray的ws-headers中，并将ip改为cloudflare的可用ip
 
-一个典型Clash配置:
-```
-  - {name: xxxxxxxxxx, server: 1.0.0.1, port: 443, type: vmess, uuid: xxxxxxxxx-xxxx-xxxx-xxxxxx, alterId: 0, cipher: auto, tls: true, network: ws, udp: true, ws-opts: {path: /iso, headers:{Host: xxx.xxxxxx.workers.dev}}}
-```
-另一种写法:
+一个典型VMESS-WS-TLS配置:
 ```
   - name: xxxxxxxxxx
     server: 1.0.0.1
@@ -44,6 +40,20 @@ fetch(request)
     alterId: 0
     cipher: auto
     tls: true
+    network: ws
+    udp: true
+    ws-opts:
+      path: /iso
+      headers:
+        Host: xxx.xxxxxx.workers.dev
+```
+一个典型Trojan-WS-TLS配置:
+```
+  - name: xxxxxxxxxx
+    server: 1.0.0.1
+    port: 443
+    type: trojan
+    password: xxxxxxxxx-xxxx-xxxx-xxxxxx
     network: ws
     udp: true
     ws-opts:
